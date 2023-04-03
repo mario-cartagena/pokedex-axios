@@ -150,3 +150,13 @@ header{
         transform: translateY(142px);
     }
 }
+
+.footer_figure{
+    width: 100%;
+    background-color: olive;
+}
+
+.portadaPokemon{
+    background-color: orangered;
+    width: 50%;
+}

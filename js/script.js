@@ -39,17 +39,19 @@ const printPokemonsButtons = (pokemonList, container) => {
 
 const printDetailsPokemons = (pokemon, container) => {
   container.innerHTML = `
-    <article>
-        <figure>
-            <img src=${pokemon.sprites.front_default} alt=${pokemon.name}>
-        </figure>
-        <h3>${pokemon.name}</h3>
-    </article>
-
-
+  <div class="section__pokemon-name">
+            <figure class="section__pokemon-icon">
+              <img
+              src="./img/fuego.png"
+              alt="Icono Fuego"
+            />
+            </figure>
+               <h2 class="section__pokemon-title">${pokemon.name}</h2>
+          </div>
+          <figure id="section__img">
         <!-- Tarjeta Squirtle -->
         <figure class="footer_figure">
-          <img
+          <img class="portadaPokemon"
             src=${pokemon.sprites.front_default}
             alt=${pokemon.name}
           />
