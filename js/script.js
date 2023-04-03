@@ -32,7 +32,9 @@ const printPokemonsButtons = (pokemonList, container) => {
   container.innerHTML = "";
   pokemonList.forEach((poke) => {
     container.innerHTML += `
-        <button class="btn btn-success" data-url=${poke.url}>${poke.name}</button>
+    <div class="contenedor_botones">
+        <button class="btn-success" data-url=${poke.url}>${poke.name}</button>
+    </div>    
         `;
   });
 };
