@@ -121,6 +121,7 @@ header{
 
 .footer figure:hover{
     background-color: #7c7a7a;
+    transform: scale(1.2);
 }
 
 .footer_figure{
