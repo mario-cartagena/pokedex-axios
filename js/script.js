@@ -1,7 +1,7 @@
 let pokemons = [];
 const URL_API = "https://pokeapi.co/api/v2/pokemon";
-const boxButtons = document.querySelector(".main__buttons");
-const containerPokemon = document.getElementById("pokemonDetail");
+const boxButtons = document.querySelector(".cards");
+const containerPokemon = document.getElementById("section__img");
 //Nos obtiene los pokemones de la API
 const getPokemonsFromApi = async (url) => {
   try {
@@ -45,6 +45,15 @@ const printDetailsPokemons = (pokemon, container) => {
         </figure>
         <h3>${pokemon.name}</h3>
     </article>
+
+
+        <!-- Tarjeta Squirtle -->
+        <figure class="footer_figure">
+          <img
+            src=${pokemon.sprites.front_default}
+            alt=${pokemon.name}
+          />
+        </figure>
     `;
 };
 
