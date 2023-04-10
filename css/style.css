@@ -25,7 +25,39 @@ header{
     margin-left: 20px; 
     margin-right: 10px;
 }
-
+.search-bar{
+  border: solid 2px #ffffff;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 20px;
+  margin: auto;
+}
+.search-bar input{
+    width: 400px;
+  border: none;
+  outline: none;
+  color: #fdfdfd;
+  pad: 10px;
+  font-size: 28px;
+  flex: auto;
+  background-color: #7C7A7A;
+  font-family: 'Teko', sans-serif;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+.search-bar .actions{
+  display: flex;
+  gap: 10px;
+}
+.search-bar .actions button{
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  color: #ffffff;
+}
 .main{
     padding: 2rem;
     background-color: #BBBBBB;
