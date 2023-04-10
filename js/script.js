@@ -105,6 +105,62 @@ const printOtherPokemons = (poke, container) => {
   });
 }
 
+//********* Busqueda de personajes por titulo  ************
+const filterByName = (termSearch, poke) => {
+  const pokemonesFiltrados = poke.filter((video) =>
+  video.name.toLowerCase().includes(termSearch.toLowerCase())
+  );
+  //validar que no esté vacío
+  const result = pokemonesFiltrados.length
+    ? pokemonesFiltrados
+    : poke;
+
+  const messageResult = pokemonesFiltrados.length
+    ? false
+    : "No existe este pokemon!";
+  return {
+    resultSearch: result,
+    messageSearch: messageResult,
+  };
+};
+const formSearch = document.querySelector(".search-bar");
+formSearch.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  console.log(formSearch.children);
+  const formChildren = Array.from(formSearch.children);
+  console.log(formChildren);
+
+  const inputSearch = formChildren.find((item) => item.localName === "input");
+  console.log(inputSearch);
+
+  const searchTerm = inputSearch.value;
+  console.log(searchTerm)
+
+  const prueba = await getPokemonsFooter(URL_API);
+  console.log(prueba)
+
+  if(searchTerm){
+      const searchResult = filterByName(searchTerm, prueba);
+      console.log(searchResult);
+      // printVideos(containerVideos, searchResult.resultSearch);
+      printCardPokemon(searchResult.resultSearch, sectionPokemons);
+      if(searchResult.messageSearch){
+          Swal.fire(
+              'Oops!',
+              searchResult.messageSearch,
+              'error'
+          )
+      }
+    }else{
+      Swal.fire(
+          'Oops!',
+          'No ingresaste el nombre del pokemon!',
+          'error'
+      )
+    }
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
   const random = getRandomInt(1, 151);
   const pokemon = await getPokemons(random);
