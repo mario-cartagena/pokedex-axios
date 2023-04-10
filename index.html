@@ -5,102 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Workshop 2</title>
   </head>
   <body>
     <header class="header">
       <figure class="header__figure">
-        <img src="./img/pokeball.png" alt="Logo Pokedex"/>
+        <img src="./img/pokeball.png" alt="Logo Pokedex" />
       </figure>
       <p class="header__title">POKÉDEX_</p>
+      <form class="search-bar">
+        <input type="text" placeholder="Busca un pokemon" name="" id="" />
+          <button data-boton="boton" type="submit">
+            <span class="material-icons"
+              ><span class="material-symbols-outlined"> search </span></span>
+          </button>
+      </form>
     </header>
 
     <main class="main">
       <section class="section">
         <article class="section__pokemon">
-          <div class="section__pokemon-name">
-            <figure class="section__pokemon-icon">
-              <img
-              src="./img/fuego.png"
-              alt="Icono Fuego"
-            />
-            </figure>
-            <h2 class="section__pokemon-title">CHARIZARD cambiado</h2>
-          </div>
-          <figure class="section__img">
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
-              alt="Charizard"
-            />
-          </figure>
+          <!--Aquí se imprime la portada-->
         </article>
 
         <article class="section__information">
-          <span
-            >NO.
-            <p>006</p>
-          </span>
-          <span
-            >LEVEL
-            <p>100</p>
-          </span>
-          <span
-            >TYPE
-            <p>FIRE</p>
-          </span>
-          <span
-            >HABILITY
-            <p>FLAMES</p>
-          </span>
-          <span
-            >HEIGHT
-            <p>1,7 m</p>
-          </span>
-          <span
-            >WEIGHT
-            <p>90,5 KG</p>
-          </span>
+          <!--Aquí se imprime la tabla de contenido-->
         </article>
       </section>
     </main>
 
-    <footer>
-      <!-- Contenedor para las tarjetas -->
+    <footer class="container__footer">
+      <!-- Contenedor para los botones -->
+      <p class="footer__text">OTHERS</p>
       <section class="footer">
-        <p class="footer__text">OTHERS</p>
-
-        <!-- Tarjeta Squirtle -->
-        <figure class="footer_figure">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-            alt="Pokemon Squirtle"
-          />
-        </figure>
-
-        <!-- Tarjeta Mewtwo -->
-        <figure class="footer_figure">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png"
-            alt="Pokemon Mewtwo"
-          />
-        </figure>
-
-        <!-- Tarjeta Solgaleo -->
-        <figure class="footer_figure">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/791.png"
-            alt="Pokemon Solgaleo"
-          />
-        </figure>
-
-        <!-- Tarjeta Snorlax -->
-        <figure class="footer_figure">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png"
-            alt="Pokemon Snorlax"
-          />
-        </figure>
+        
+<!--Aquí se imprimen los botones-->
       </section>
     </footer>
     <script src="./js/script.js" type="module"></script>
