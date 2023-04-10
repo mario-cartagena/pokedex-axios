@@ -35,7 +35,6 @@ const getPokemonsFooter = async (url) => {
 const getPokemons = async (id) => {
   try {
     const { data } = await axios.get(`${URL_API}/${id}`); //desestructuración de objetos
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -62,7 +61,6 @@ const getAllInfoPokemon = async (id) => {
 };
 
 const printCardPokemon = (poke, container) => {
-  console.log(poke);
   container.innerHTML = `
         <div class="section__pokemon-name">
         <figure class="section__pokemon-icon">
@@ -83,6 +81,29 @@ const printCardPokemon = (poke, container) => {
     `;
 };
 
+const printCardFilter = (poke, container) => {
+  for (let i = 0; i < poke.length; i++) {
+    container.innerHTML = `
+          <div class="section__pokemon-name">
+          <figure class="section__pokemon-icon">
+          <img
+          src="${poke[i].image}"
+          alt="Icono Fuego"
+        />
+        </figure>
+              <h2 class="section__pokemon-title">${poke[i].name}</h2>
+            </div>
+            <figure class="section__img">
+              <img
+                src="${poke[i].image}"
+                alt=${poke[i].name}
+              />
+            </figure>
+          </div>
+      `;
+  }
+};
+
 const printInfoPokemon = (poke, container) => {
   container.innerHTML = `
     <span class="span__information">NO.<p>${poke.id}</p></span>
@@ -92,6 +113,20 @@ const printInfoPokemon = (poke, container) => {
     <span class="span__information">HEIGHT<p>${poke.height}</p></span>
     <span class="span__information">WEIGHT<p>${poke.weight}</p></span>
     `;
+};
+
+const printInfoFilter = (poke, container) => {
+  console.log(poke)
+  for (let i = 0; i < poke.length; i++) {
+    container.innerHTML = `
+      <span class="span__information">NO.<p>${poke[i].id}</p></span>
+      <span class="span__information">LEVEL<p>100</p></span>
+      <span class="span__information">TYPE<p>${poke[i].type}</p></span>
+      <span class="span__information" id="hability">HABILITY<p>${poke[i].abilities}</p></span>
+      <span class="span__information">HEIGHT<p>${poke[i].height}</p></span>
+      <span class="span__information">WEIGHT<p>${poke[i].weight}</p></span>
+      `;
+  }
 };
 
 const printOtherPokemons = (poke, container) => {
@@ -105,7 +140,7 @@ const printOtherPokemons = (poke, container) => {
   });
 }
 
-//********* Busqueda de personajes por titulo  ************
+//********* Busqueda de personajes por nombre  ************
 const filterByName = (termSearch, poke) => {
   const pokemonesFiltrados = poke.filter((video) =>
   video.name.toLowerCase().includes(termSearch.toLowerCase())
@@ -123,28 +158,21 @@ const filterByName = (termSearch, poke) => {
     messageSearch: messageResult,
   };
 };
+
 const formSearch = document.querySelector(".search-bar");
 formSearch.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  console.log(formSearch.children);
   const formChildren = Array.from(formSearch.children);
-  console.log(formChildren);
-
   const inputSearch = formChildren.find((item) => item.localName === "input");
-  console.log(inputSearch);
-
   const searchTerm = inputSearch.value;
-  console.log(searchTerm)
-
-  const prueba = await getPokemonsFooter(URL_API);
-  console.log(prueba)
+  const pokemones = await getPokemonsFooter(URL_API);
 
   if(searchTerm){
-      const searchResult = filterByName(searchTerm, prueba);
+      const searchResult = filterByName(searchTerm, pokemones);
       console.log(searchResult);
-      // printVideos(containerVideos, searchResult.resultSearch);
-      printCardPokemon(searchResult.resultSearch, sectionPokemons);
+      printCardFilter(searchResult.resultSearch, sectionPokemons);
+      printInfoFilter(searchResult.resultSearch, sectionInfoPokemon)
       if(searchResult.messageSearch){
           Swal.fire(
               'Oops!',
