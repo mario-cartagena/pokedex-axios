@@ -65,6 +65,12 @@ const printCardPokemon = (poke, container) => {
   console.log(poke);
   container.innerHTML = `
         <div class="section__pokemon-name">
+        <figure class="section__pokemon-icon">
+        <img
+        src="${poke.image}"
+        alt="Icono Fuego"
+      />
+      </figure>
             <h2 class="section__pokemon-title">${poke.name}</h2>
           </div>
           <figure class="section__img">
@@ -79,12 +85,12 @@ const printCardPokemon = (poke, container) => {
 
 const printInfoPokemon = (poke, container) => {
   container.innerHTML = `
-    <span>NO.<p>${poke.id}</p></span>
-    <span>LEVEL<p>100</p></span>
-    <span>TYPE<p>${poke.type}</p></span>
-    <span>HABILITY<p>${poke.abilities}</p></span>
-    <span>HEIGHT<p>${poke.height}</p></span>
-    <span>WEIGHT<p>${poke.weight}</p></span>
+    <span class="span__information">NO.<p>${poke.id}</p></span>
+    <span class="span__information">LEVEL<p>100</p></span>
+    <span class="span__information">TYPE<p>${poke.type}</p></span>
+    <span class="span__information" id="hability">HABILITY<p>${poke.abilities}</p></span>
+    <span class="span__information">HEIGHT<p>${poke.height}</p></span>
+    <span class="span__information">WEIGHT<p>${poke.weight}</p></span>
     `;
 };
 
