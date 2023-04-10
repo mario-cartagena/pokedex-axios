@@ -8,6 +8,30 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
+const getPokemonsFooter = async (url) => {
+  let allInfoPokemons = [];
+  try {
+    const { data } = await axios.get(url); //desestructuración de objetos
+    for (const pokemon of data.results) {
+      const urlPokemon = pokemon.url;
+      const response = await axios.get(urlPokemon);
+      const poke = {
+        id: response.data.id,
+        name: response.data.name,
+        height: response.data.height,
+        weight: response.data.weight,
+        image: response.data.sprites.other.dream_world.front_default,
+        abilities: response.data.abilities.map((item) => item.ability.name),
+        types: response.data.types.map((item) => item.type.name),
+      };
+      allInfoPokemons.push(poke);
+    }
+    return allInfoPokemons;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getPokemons = async (id) => {
   try {
     const { data } = await axios.get(`${URL_API}/${id}`); //desestructuración de objetos
@@ -19,7 +43,6 @@ const getPokemons = async (id) => {
 };
 
 const getAllInfoPokemon = async (id) => {
-//   const allInfoPokemon = [];
   try {
     const { data } = await axios.get(`${URL_API}/${id}`); //desestructuración de objetos
 
@@ -29,10 +52,9 @@ const getAllInfoPokemon = async (id) => {
       height: data.height,
       weight: data.weight,
       image: data.sprites.other.dream_world.front_default,
-      abilities: data.abilities[0].ability.name,
-      type: data.types[0].type.name
+      abilities: data.abilities.map((item) => item.ability.name),
+      type: data.types.map((item) => item.type.name)
     };
-    // allInfoPokemon.push(poke);
     return poke;
   } catch (error) {
     console.log(error);
@@ -66,17 +88,16 @@ const printInfoPokemon = (poke, container) => {
     `;
 };
 
-// const printOtherPokemons = (poke, container) => {
-//     container.innerHTML =`
-//     <figure class="footer_figure">
-//     <img
-//       src="${poke.sprites.other.dream_world.front_default}"
-//       alt="${poke.name}"
-//     />
-//     </figure>
-
-//     `;
-// };
+const printOtherPokemons = (poke, container) => {
+  poke.forEach(item => {
+    container.innerHTML += `
+      <figure class="footer_figure">
+      <img data-card="cards" name=${item.id} src=${item.image} alt=${item.name}
+      />
+      </figure>
+    `;
+  });
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
   const random = getRandomInt(1, 151);
@@ -88,5 +109,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   printInfoPokemon(allInfo, sectionInfoPokemon);
   printCardPokemon(allInfo, sectionPokemons);
-  // printOtherPokemons(pokemon, sectionOthersPokemons);
+
+  const allPokemons = await getPokemonsFooter(`${URL_API}?limit=4`);
+  console.log(allPokemons);
+  printOtherPokemons(allPokemons, sectionOthersPokemons);
+});
+
+
+document.addEventListener("click", async (event) => {
+    const allPokemons = await getPokemonsFooter(`${URL_API}?limit=4`);
+    const dataCardAttribute = event.target.getAttribute("data-card");
+    if (dataCardAttribute === "cards") {
+      const id = event.target.getAttribute("name");
+      printCardPokemon(allPokemons[id-1], sectionPokemons);
+      printInfoPokemon(allPokemons[id-1], sectionInfoPokemon);
+    }
 });
