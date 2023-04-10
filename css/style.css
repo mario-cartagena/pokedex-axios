@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Asap:wght@100&family=Teko:wght@300&display=swap");
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -27,9 +28,11 @@ header {
   margin-right: 10px;
   cursor: pointer;
 }
+
 a {
   text-decoration: none;
 }
+
 .search-bar {
   border: solid 2px #ffffff;
   border-radius: 30px;
@@ -39,6 +42,7 @@ a {
   padding: 5px 20px;
   margin: auto;
 }
+
 .search-bar input {
   width: 400px;
   border: none;
@@ -50,10 +54,12 @@ a {
   font-size: 20px;
   padding-left: 10px;
 }
+
 .search-bar .actions {
   display: flex;
   gap: 10px;
 }
+
 .search-bar .actions button {
   border: none;
   outline: none;
@@ -61,19 +67,23 @@ a {
   cursor: pointer;
   color: #ffffff;
 }
+
 .search-bar ::placeholder {
   color: #fdfdfd;
   font-family: "Teko", sans-serif;
 }
+
 .search-bar button {
   cursor: pointer;
   background-color: transparent;
   color: white;
   border: transparent;
 }
+
 .search-bar button:hover {
   color: black;
 }
+
 .main {
   padding: 2rem;
   background-color: #bbbbbb;
