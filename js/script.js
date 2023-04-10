@@ -22,7 +22,7 @@ const getPokemonsFooter = async (url) => {
         weight: response.data.weight,
         image: response.data.sprites.other.dream_world.front_default,
         abilities: response.data.abilities.map((item) => item.ability.name),
-        types: response.data.types.map((item) => item.type.name),
+        type: response.data.types.map((item) => item.type.name),
       };
       allInfoPokemons.push(poke);
     }
