@@ -73,6 +73,7 @@ header{
 .section__img{
     display: flex;
     justify-content: center; 
+    width: 20%;
 }
 
 .section__information{
@@ -116,7 +117,7 @@ header{
 .footer img{
     width: 100%;
     height: auto;
-    filter: brightness(0);
+    /* filter: brightness(0); */
 }
 
 .footer figure:hover{
@@ -127,8 +128,14 @@ header{
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: 10%;
+    width: 50%;
     background-color: #BBBBBB;
+}
+
+.pokeBoton {
+    width: 20%;
+    background-color: palegreen;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 629px) {
