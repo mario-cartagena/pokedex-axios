@@ -52,7 +52,7 @@ const getAllInfoPokemon = async (id) => {
       weight: data.weight,
       image: data.sprites.other.dream_world.front_default,
       abilities: data.abilities.map((item) => item.ability.name),
-      type: data.types.map((item) => item.type.name)
+      type: data.types.map((item) => item.type.name),
     };
     return poke;
   } catch (error) {
@@ -116,7 +116,7 @@ const printInfoPokemon = (poke, container) => {
 };
 
 const printInfoFilter = (poke, container) => {
-  console.log(poke)
+  console.log(poke);
   for (let i = 0; i < poke.length; i++) {
     container.innerHTML = `
       <span class="span__information">NO.<p>${poke[i].id}</p></span>
@@ -130,7 +130,7 @@ const printInfoFilter = (poke, container) => {
 };
 
 const printOtherPokemons = (poke, container) => {
-  poke.forEach(item => {
+  poke.forEach((item) => {
     container.innerHTML += `
       <figure class="footer_figure">
       <img data-card="cards" name=${item.id} src=${item.image} alt=${item.name}
@@ -138,17 +138,15 @@ const printOtherPokemons = (poke, container) => {
       </figure>
     `;
   });
-}
+};
 
 //********* Busqueda de personajes por nombre  ************
 const filterByName = (termSearch, poke) => {
   const pokemonesFiltrados = poke.filter((video) =>
-  video.name.toLowerCase().includes(termSearch.toLowerCase())
+    video.name.toLowerCase().includes(termSearch.toLowerCase())
   );
   //validar que no esté vacío
-  const result = pokemonesFiltrados.length
-    ? pokemonesFiltrados
-    : poke;
+  const result = pokemonesFiltrados.length ? pokemonesFiltrados : poke;
 
   const messageResult = pokemonesFiltrados.length
     ? false
@@ -168,35 +166,27 @@ formSearch.addEventListener("submit", async (event) => {
   const searchTerm = inputSearch.value;
   const pokemones = await getPokemonsFooter(URL_API);
 
-  if(searchTerm){
-      const searchResult = filterByName(searchTerm, pokemones);
-      console.log(searchResult);
-      printCardFilter(searchResult.resultSearch, sectionPokemons);
-      printInfoFilter(searchResult.resultSearch, sectionInfoPokemon)
-      if(searchResult.messageSearch){
-          Swal.fire(
-              'Oops!',
-              searchResult.messageSearch,
-              'error'
-          )
-      }
-    }else{
-      Swal.fire(
-          'Oops!',
-          'No ingresaste el nombre del pokemon!',
-          'error'
-      )
+  if (searchTerm) {
+    const searchResult = filterByName(searchTerm, pokemones);
+    console.log(searchResult);
+    printCardFilter(searchResult.resultSearch, sectionPokemons);
+    printInfoFilter(searchResult.resultSearch, sectionInfoPokemon);
+    if (searchResult.messageSearch) {
+      Swal.fire("Oops!", searchResult.messageSearch, "error");
     }
+  } else {
+    Swal.fire("Oops!", "No ingresaste el nombre del pokemon!", "error");
+  }
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
   const random = getRandomInt(1, 151);
   const pokemon = await getPokemons(random);
   console.log(pokemon);
-  
+
   const allInfo = await getAllInfoPokemon(random);
   console.log(allInfo);
-  
+
   printInfoPokemon(allInfo, sectionInfoPokemon);
   printCardPokemon(allInfo, sectionPokemons);
 
@@ -205,13 +195,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   printOtherPokemons(allPokemons, sectionOthersPokemons);
 });
 
-
 document.addEventListener("click", async (event) => {
-    const allPokemons = await getPokemonsFooter(`${URL_API}?limit=4`);
-    const dataCardAttribute = event.target.getAttribute("data-card");
-    if (dataCardAttribute === "cards") {
-      const id = event.target.getAttribute("name");
-      printCardPokemon(allPokemons[id-1], sectionPokemons);
-      printInfoPokemon(allPokemons[id-1], sectionInfoPokemon);
-    }
+  const allPokemons = await getPokemonsFooter(`${URL_API}?limit=4`);
+  const dataCardAttribute = event.target.getAttribute("data-card");
+  if (dataCardAttribute === "cards") {
+    const id = event.target.getAttribute("name");
+    printCardPokemon(allPokemons[id - 1], sectionPokemons);
+    printInfoPokemon(allPokemons[id - 1], sectionInfoPokemon);
+  }
 });
