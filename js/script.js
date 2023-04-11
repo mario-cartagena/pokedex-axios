@@ -181,18 +181,16 @@ formSearch.addEventListener("submit", async (event) => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const random = getRandomInt(1, 151);
-  const pokemon = await getPokemons(random);
-  console.log(pokemon);
+  // console.log(pokemon);
 
   const allInfo = await getAllInfoPokemon(random);
-  console.log(allInfo);
+  // console.log(allInfo);
 
   printInfoPokemon(allInfo, sectionInfoPokemon);
   printCardPokemon(allInfo, sectionPokemons);
 
   const allPokemons = await getPokemonsFooter(`${URL_API}?limit=4`);
-  console.log(allPokemons);
-  printOtherPokemons(allPokemons, sectionOthersPokemons);
+  printOtherPokemons(allPokemons, sectionOthersPokemons);  
 });
 
 document.addEventListener("click", async (event) => {
@@ -202,5 +200,6 @@ document.addEventListener("click", async (event) => {
     const id = event.target.getAttribute("name");
     printCardPokemon(allPokemons[id - 1], sectionPokemons);
     printInfoPokemon(allPokemons[id - 1], sectionInfoPokemon);
+    printOtherPokemons(allPokemons[id - 1], sectionOthersPokemons)
   }
 });
